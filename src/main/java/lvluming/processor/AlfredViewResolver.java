@@ -5,4 +5,5 @@ package lvluming.processor;
  * @date 2017/8/6 00:07
  */
 public class AlfredViewResolver {
+
 }
