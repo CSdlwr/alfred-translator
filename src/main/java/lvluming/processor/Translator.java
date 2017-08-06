@@ -2,8 +2,9 @@ package lvluming.processor;
 
 /**
  * @author lvluming
- * @date 2017/8/6 00:06
+ * @date 2017/8/6 17:11
  */
-public class Translator {
+public interface Translator<T> {
 
+    T translate(String query);
 }
