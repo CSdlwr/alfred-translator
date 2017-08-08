@@ -27,9 +27,10 @@ public class HandlerChain implements Handler {
         return null;
     }
 
+
     @Override
-    public Object handle(Object o) {
-        return null;
+    public void handle() {
+
     }
 
     @Override

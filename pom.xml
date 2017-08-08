@@ -72,6 +72,12 @@
         <version>0.9.28</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.ogce</groupId>
+        <artifactId>xpp3</artifactId>
+        <version>1.1.6</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -117,6 +123,11 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ogce</groupId>
+      <artifactId>xpp3</artifactId>
     </dependency>
 
   </dependencies>
