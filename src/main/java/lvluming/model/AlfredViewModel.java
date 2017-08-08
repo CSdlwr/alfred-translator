@@ -20,7 +20,7 @@ public class AlfredViewModel {
         this.items = items;
     }
 
-    private static class Item {
+    public static class Item {
 
         @XStreamAsAttribute
         private String uid;
@@ -41,7 +41,7 @@ public class AlfredViewModel {
         }
     }
 
-    static class ItemBuilder {
+    public static class ItemBuilder {
 
         private String uid;
         private String arg;

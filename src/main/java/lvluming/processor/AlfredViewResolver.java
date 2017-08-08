@@ -1,8 +1,12 @@
 package lvluming.processor;
 
+import com.google.common.collect.Lists;
 import lvluming.common.Context;
 import lvluming.common.Handler;
+import lvluming.model.AlfredViewModel;
 import lvluming.model.YoudaoApiResponse;
+
+import java.util.List;
 
 /**
  * @author lvluming
@@ -15,7 +19,27 @@ public class AlfredViewResolver implements Handler {
         Context context = getContext();
         YoudaoApiResponse apiResponse = context.getAttribute("");
 
+        List<AlfredViewModel.Item> items = Lists.newArrayList();
 
+        items.add(createPhonetic(apiResponse));
+        items.add(createYoudaoExpainItem(apiResponse));
+
+        for (String webItem : apiResponse.formatWebTranslations()) {
+            items.add(createWebTranslationItem(webItem));
+        }
+    }
+
+    private AlfredViewModel.Item createWebTranslationItem(String webItem) {
+        return AlfredViewModel.ItemBuilder.create().setTitle(webItem).setSubtitle("Web translation").build();
+    }
+
+    private AlfredViewModel.Item createYoudaoExpainItem(
+            YoudaoApiResponse apiResponse) {
+        return AlfredViewModel.ItemBuilder.create().setTitle(apiResponse.formatBasicExplains()).setSubtitle("Youdao dict").build();
+    }
+
+    private AlfredViewModel.Item createPhonetic(YoudaoApiResponse apiResponse) {
+        return AlfredViewModel.ItemBuilder.create().setTitle(apiResponse.formatPhonetic()).build();
     }
 
     @Override
