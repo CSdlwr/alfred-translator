@@ -4,9 +4,9 @@ package lvluming.common;
  * @author lvluming
  * @date 2017/8/6 21:14
  */
-public interface Handler<INPUT, OUTPUT> {
+public interface Handler {
 
-    OUTPUT handle(INPUT input);
+    void handle();
 
     Context getContext();
 }
