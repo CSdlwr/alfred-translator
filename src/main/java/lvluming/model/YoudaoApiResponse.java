@@ -13,10 +13,19 @@ public class YoudaoApiResponse {
     private Pair[] web;
 
     static class Basic {
+
         private String phonetic;
         private String ukPhonetic;
         private String usPhonetic;
         private String[] explains;
+
+        public String getPhonetic() {
+            return phonetic;
+        }
+
+        public String[] getExplains() {
+            return explains;
+        }
     }
 
     static class Pair {
