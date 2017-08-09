@@ -1,6 +1,7 @@
 package lvluming.model;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.MoreObjects;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -33,6 +34,16 @@ public class YoudaoApiResponse {
             return "null";
         }
         return basic.getPhonetic();
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("errorCode", errorCode)
+                .add("query", query)
+                .add("translation", translation)
+                .add("basic", basic)
+                .add("web", web).toString();
     }
 
     public String formatBasicExplains() {
@@ -77,6 +88,15 @@ public class YoudaoApiResponse {
 
         public String formatExplains() {
             return SEMICOLON_JOINER.join(explains);
+        }
+
+        @Override
+        public String toString() {
+            return MoreObjects.toStringHelper(this)
+                    .add("phonetic", phonetic)
+                    .add("ukPhonetic", ukPhonetic)
+                    .add("usPhonetic", usPhonetic)
+                    .add("explains", explains).toString();
         }
     }
 

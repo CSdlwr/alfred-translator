@@ -1,5 +1,6 @@
 package lvluming.processor;
 
+import lvluming.model.YoudaoApiResponse;
 import lvluming.util.JsonUtil;
 import org.junit.Test;
 
@@ -13,7 +14,11 @@ public class YoudaoTranslatorTest {
     public void callApi() throws Exception {
 
         YoudaoTranslator underTest = new YoudaoTranslator();
-        System.out.println(JsonUtil.formatJsonString(underTest.callApi("name")));
+        String apiResponse = underTest.callApi("name");
+        System.out.println(JsonUtil.formatJsonString(apiResponse));
+
+        YoudaoApiResponse response = JsonUtil.fromJson(apiResponse, YoudaoApiResponse.class);
+        System.out.println(JsonUtil.toPrettyJson(response));
     }
 
 }
