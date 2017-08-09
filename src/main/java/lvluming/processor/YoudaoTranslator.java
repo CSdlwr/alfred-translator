@@ -22,20 +22,7 @@ public class YoudaoTranslator implements Handler {
 
     private static final String API_URL = "http://fanyi.youdao.com/openapi.do?keyfrom=alfred-llm-0858&key=425214878&type=data&doctype=json&version=1.1&";
 
-    @Deprecated
-    public YoudaoApiResponse translate(String query) {
-        try {
-            HttpResponse<YoudaoApiResponse> response = Unirest.get(API_URL)
-                    .queryString("q", query)
-                    .asObject(YoudaoApiResponse.class);
-            return response.getBody();
-        } catch (UnirestException e) {
-            LOGGER.error("youdao translate error", e);
-        }
-        return null;
-    }
-
-    private String callApi(String query) throws UnirestException {
+    String callApi(String query) throws UnirestException {
         return Unirest.get(API_URL)
                 .queryString("q", query)
                 .asString()

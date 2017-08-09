@@ -29,4 +29,9 @@ public class TranslateContext implements Context {
     public boolean shouldAbort() {
         return false;
     }
+
+    @Override
+    public void confirmAbort() {
+
+    }
 }
