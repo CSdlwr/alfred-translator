@@ -1,13 +1,10 @@
 package lvluming.processor;
 
-import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import lvluming.common.Context;
 import lvluming.common.Handler;
 import lvluming.common.Request;
 import lvluming.common.Response;
-import lvluming.model.YoudaoApiResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,11 +37,6 @@ public class YoudaoTranslator implements Handler {
             request.getContext().confirmAbort();
             response.setResult(StringUtils.EMPTY);
         }
-    }
-
-    @Override
-    public Context getContext() {
-        return null;
     }
 
     @Override

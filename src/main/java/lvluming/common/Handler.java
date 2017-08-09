@@ -8,9 +8,6 @@ public interface Handler {
 
     void handle(Request request, Response response);
 
-    @Deprecated
-    Context getContext();
-
     boolean shouldAbort();
 
     default void smartHandle(Request request, Response response) {

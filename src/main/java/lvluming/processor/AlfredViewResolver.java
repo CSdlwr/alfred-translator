@@ -16,19 +16,19 @@ import java.util.List;
  */
 public class AlfredViewResolver implements Handler {
 
-    public void handle() {
-        Context context = getContext();
-        YoudaoApiResponse apiResponse = context.getAttribute("");
-
-        List<AlfredViewModel.Item> items = Lists.newArrayList();
-
-        items.add(createPhonetic(apiResponse));
-        items.add(createYoudaoExpainItem(apiResponse));
-
-        for (String webItem : apiResponse.formatWebTranslations()) {
-            items.add(createWebTranslationItem(webItem));
-        }
-    }
+//    public void handle() {
+//        Context context = getContext();
+//        YoudaoApiResponse apiResponse = context.getAttribute("");
+//
+//        List<AlfredViewModel.Item> items = Lists.newArrayList();
+//
+//        items.add(createPhonetic(apiResponse));
+//        items.add(createYoudaoExpainItem(apiResponse));
+//
+//        for (String webItem : apiResponse.formatWebTranslations()) {
+//            items.add(createWebTranslationItem(webItem));
+//        }
+//    }
 
     private AlfredViewModel.Item createWebTranslationItem(String webItem) {
         return AlfredViewModel.ItemBuilder.create().setTitle(webItem).setSubtitle("Web translation").build();
@@ -46,11 +46,6 @@ public class AlfredViewResolver implements Handler {
     @Override
     public void handle(Request request, Response response) {
 
-    }
-
-    @Override
-    public Context getContext() {
-        return null;
     }
 
     @Override
