@@ -8,7 +8,8 @@ import java.util.List;
  * @author lvluming
  * @date 2017/8/6 21:28
  */
-public class HandlerChain implements Handler {
+@Deprecated
+public class HandlerChain {
 
     private Context context;
 
@@ -22,18 +23,16 @@ public class HandlerChain implements Handler {
         if (handlers != null) {
             HandlerChain chain = new HandlerChain(context);
             chain.handlers = Lists.newArrayList(handlers);
-            return chain;
+//            return chain;
         }
         return null;
     }
 
 
-    @Override
     public void handle() {
 
     }
 
-    @Override
     public Context getContext() {
         return context;
     }

@@ -24,4 +24,9 @@ public class TranslateContext implements Context {
     public <T> T getAttribute(Object key) {
         return (T) attributes.get(key);
     }
+
+    @Override
+    public boolean shouldAbort() {
+        return false;
+    }
 }

@@ -6,7 +6,10 @@ package lvluming.common;
  */
 public interface Context {
 
+    @Deprecated
     void setAttribute(Object key, Object value);
 
     <T> T getAttribute(Object key);
+
+    boolean shouldAbort();
 }

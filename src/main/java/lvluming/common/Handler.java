@@ -6,7 +6,16 @@ package lvluming.common;
  */
 public interface Handler {
 
-    void handle();
+    void handle(Request request, Response response);
 
+    @Deprecated
     Context getContext();
+
+    boolean shouldAbort();
+
+    default void smartHandle(Request request, Response response) {
+        if (!shouldAbort()) {
+            handle(request, response);
+        }
+    }
 }
