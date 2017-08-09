@@ -1,14 +1,10 @@
 package lvluming.processor;
 
-import com.google.common.collect.Lists;
-import lvluming.common.Context;
 import lvluming.common.Handler;
 import lvluming.common.Request;
 import lvluming.common.Response;
 import lvluming.model.AlfredViewModel;
 import lvluming.model.YoudaoApiResponse;
-
-import java.util.List;
 
 /**
  * @author lvluming
@@ -46,11 +42,6 @@ public class AlfredViewResolver implements Handler {
     @Override
     public void handle(Request request, Response response) {
 
-    }
-
-    @Override
-    public boolean shouldAbort() {
-        return false;
     }
 
     private static class YoudaoApiResponseParser {

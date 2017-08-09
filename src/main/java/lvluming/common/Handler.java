@@ -8,10 +8,12 @@ public interface Handler {
 
     void handle(Request request, Response response);
 
-    boolean shouldAbort();
+    default boolean shouldAbort(Request request) {
+        return request.getContext().shouldAbort();
+    }
 
     default void smartHandle(Request request, Response response) {
-        if (!shouldAbort()) {
+        if (!shouldAbort(request)) {
             handle(request, response);
         }
     }
