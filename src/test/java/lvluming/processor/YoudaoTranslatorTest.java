@@ -14,11 +14,12 @@ public class YoudaoTranslatorTest {
     public void callApi() throws Exception {
 
         YoudaoTranslator underTest = new YoudaoTranslator();
-        String apiResponse = underTest.callApi("name");
-        System.out.println(JsonUtil.formatJsonString(apiResponse));
+//        String apiResponse = underTest.callApi("name");
+        YoudaoApiResponse apiResponse = underTest.callApi("name");
+//        System.out.println(JsonUtil.formatJsonString(apiResponse));
 
-        YoudaoApiResponse response = JsonUtil.fromJson(apiResponse, YoudaoApiResponse.class);
-        System.out.println(JsonUtil.toPrettyJson(response));
+//        YoudaoApiResponse response = JsonUtil.fromJson(apiResponse, YoudaoApiResponse.class);
+        System.out.println(JsonUtil.toPrettyJson(apiResponse));
     }
 
 }

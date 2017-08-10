@@ -1,9 +1,11 @@
 package lvluming.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import org.omg.CORBA.OBJ_ADAPTER;
 
 import java.lang.reflect.Type;
 
@@ -15,6 +17,8 @@ public class JsonUtil {
 
     private static final GsonBuilder GSON_BUILDER = new GsonBuilder();
     private static final Gson DEFAULT_GSON = GSON_BUILDER.create();
+
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static <T> String toJson(T t) {
         return DEFAULT_GSON.toJson(t);
@@ -38,4 +42,7 @@ public class JsonUtil {
         return DEFAULT_GSON.fromJson(json, type);
     }
 
+    public static ObjectMapper getDefaultObjectMapper() {
+        return OBJECT_MAPPER;
+    }
 }
