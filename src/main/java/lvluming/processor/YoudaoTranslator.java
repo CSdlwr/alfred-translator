@@ -1,7 +1,5 @@
 package lvluming.processor;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.common.base.Throwables;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -13,8 +11,6 @@ import lvluming.util.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * @author lvluming
@@ -45,22 +41,14 @@ public class YoudaoTranslator implements Handler {
         Unirest.setObjectMapper(new ObjectMapper() {
             @Override
             public <T> T readValue(String value, Class<T> valueType) {
-                try {
-                    return JsonUtil.getDefaultObjectMapper().readValue(value, valueType);
-                } catch (IOException e) {
-                    LOGGER.error("call api error.", e);
-                    throw Throwables.propagate(e);
-                }
+                //                    return JsonUtil.getDefaultObjectMapper().readValue(value, valueType);
+                return JsonUtil.fromJson(value, valueType);
             }
 
             @Override
             public String writeValue(Object value) {
-                try {
-                    return JsonUtil.getDefaultObjectMapper().writeValueAsString(value);
-                } catch (JsonProcessingException e) {
-                    LOGGER.error("call api error.", e);
-                    throw Throwables.propagate(e);
-                }
+                return JsonUtil.toJson(value);
+                //                    return JsonUtil.getDefaultObjectMapper().writeValueAsString(value);
             }
         });
 
