@@ -26,6 +26,10 @@ public class AlfredViewResolver implements Handler {
 //        }
 //    }
 
+    private Parser parser;
+
+    private Viewer viewer;
+
     private AlfredViewModel.Item createWebTranslationItem(String webItem) {
         return AlfredViewModel.ItemBuilder.create().setTitle(webItem).setSubtitle("Web translation").build();
     }
@@ -41,10 +45,20 @@ public class AlfredViewResolver implements Handler {
 
     @Override
     public void handle(Request request, Response response) {
-
+        Object dataSource = request.getContext().getAttribute("youdaoApiResponse");
+        AlfredViewModel viewModel = parser.parse(dataSource);
+        String view = viewer.view(viewModel);
+        response.setResult(view);
     }
 
-    private static class YoudaoApiResponseParser {
+    interface Parser {
 
+        <T> AlfredViewModel parse(T t);
     }
+
+    interface Viewer {
+
+        String view(AlfredViewModel viewModel);
+    }
+
 }
