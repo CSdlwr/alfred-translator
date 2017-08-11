@@ -8,6 +8,7 @@ import java.util.Map;
  * @author lvluming
  * @date 2017/8/6 21:14
  */
+@Deprecated
 public class TranslateContext implements Context {
 
     private Map<Object, Object> attributes = Maps.newHashMap();

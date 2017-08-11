@@ -20,6 +20,7 @@ public class AlfredViewModel {
         this.items = items;
     }
 
+    @XStreamAlias("item")
     public static class Item {
 
         @XStreamAsAttribute
