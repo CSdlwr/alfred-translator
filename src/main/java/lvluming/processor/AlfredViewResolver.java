@@ -23,8 +23,9 @@ public class AlfredViewResolver implements Handler {
     @Override
     @SuppressWarnings("unchecked")
     public void handle(Request request, Response response) {
-        Object dataSource = request.getContext().getAttribute("youdaoApiResponse");
-        AlfredViewModel viewModel = parser.parse(dataSource);
+
+        Object source = request.getContext().getAttribute("youdaoApiResponse");
+        AlfredViewModel viewModel = parser.parse(source);
         String view = viewer.view(viewModel);
         response.setResult(view);
     }
