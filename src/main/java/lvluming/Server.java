@@ -1,5 +1,6 @@
 package lvluming;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lvluming.common.Context;
@@ -11,6 +12,7 @@ import lvluming.processor.SimpleXmlViewer;
 import lvluming.processor.YoudaoTranslationParser;
 import lvluming.processor.YoudaoTranslator;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -21,13 +23,15 @@ import java.util.Map;
  */
 public class Server {
 
+    private static final Joiner PARAMETER_JOINER = Joiner.on(StringUtils.SPACE).skipNulls();
+
     public static void main(String[] args) {
 
         if (ArrayUtils.isEmpty(args)) {
             return;
         }
 
-        String query = args[0];
+        String query = PARAMETER_JOINER.join(args);
 
         Context ctx = buildContext();
         Request request = buildRequest(query, ctx);
