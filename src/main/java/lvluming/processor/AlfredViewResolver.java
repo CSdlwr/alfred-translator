@@ -4,7 +4,6 @@ import lvluming.common.Handler;
 import lvluming.common.Request;
 import lvluming.common.Response;
 import lvluming.model.AlfredViewModel;
-import lvluming.model.YoudaoApiResponse;
 
 /**
  * @author lvluming
@@ -12,38 +11,17 @@ import lvluming.model.YoudaoApiResponse;
  */
 public class AlfredViewResolver implements Handler {
 
-//    public void handle() {
-//        Context context = getContext();
-//        YoudaoApiResponse apiResponse = context.getAttribute("");
-//
-//        List<AlfredViewModel.Item> items = Lists.newArrayList();
-//
-//        items.add(createPhonetic(apiResponse));
-//        items.add(createYoudaoExpainItem(apiResponse));
-//
-//        for (String webItem : apiResponse.formatWebTranslations()) {
-//            items.add(createWebTranslationItem(webItem));
-//        }
-//    }
-
     private Parser parser;
 
     private Viewer viewer;
 
-    private AlfredViewModel.Item createWebTranslationItem(String webItem) {
-        return AlfredViewModel.ItemBuilder.create().setTitle(webItem).setSubtitle("Web translation").build();
-    }
-
-    private AlfredViewModel.Item createYoudaoExpainItem(
-            YoudaoApiResponse apiResponse) {
-        return AlfredViewModel.ItemBuilder.create().setTitle(apiResponse.formatBasicExplains()).setSubtitle("Youdao dict").build();
-    }
-
-    private AlfredViewModel.Item createPhonetic(YoudaoApiResponse apiResponse) {
-        return AlfredViewModel.ItemBuilder.create().setTitle(apiResponse.formatPhonetic()).build();
+    public AlfredViewResolver(Parser parser, Viewer viewer) {
+        this.parser = parser;
+        this.viewer = viewer;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void handle(Request request, Response response) {
         Object dataSource = request.getContext().getAttribute("youdaoApiResponse");
         AlfredViewModel viewModel = parser.parse(dataSource);
@@ -51,9 +29,9 @@ public class AlfredViewResolver implements Handler {
         response.setResult(view);
     }
 
-    interface Parser {
+    interface Parser<T> {
 
-        <T> AlfredViewModel parse(T t);
+        AlfredViewModel parse(T t);
     }
 
     interface Viewer {

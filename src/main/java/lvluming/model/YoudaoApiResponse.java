@@ -78,15 +78,15 @@ public class YoudaoApiResponse {
         private String usPhonetic;
         private String[] explains;
 
-        public String getPhonetic() {
+        String getPhonetic() {
             return phonetic;
         }
 
-        public String[] getExplains() {
+        String[] getExplains() {
             return explains;
         }
 
-        public String formatExplains() {
+        String formatExplains() {
             return SEMICOLON_JOINER.join(explains);
         }
 
