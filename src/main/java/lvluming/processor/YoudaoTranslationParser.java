@@ -56,6 +56,6 @@ public class YoudaoTranslationParser implements AlfredViewResolver.Parser<Youdao
     }
 
     private AlfredViewModel.Item createPhonetic(YoudaoApiResponse youdaoApiResponse) {
-        return AlfredViewModel.ItemBuilder.create().setTitle(youdaoApiResponse.formatPhonetic()).build();
+        return AlfredViewModel.ItemBuilder.create().setTitle(youdaoApiResponse.formatPhonetic()).setSubtitle("phonetic").build();
     }
 }
