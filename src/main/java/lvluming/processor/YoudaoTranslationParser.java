@@ -20,7 +20,7 @@ public class YoudaoTranslationParser implements AlfredViewResolver.Parser<Youdao
 
         List<AlfredViewModel.Item> viewItems = Lists.newArrayList();
         viewItems.add(createPhonetic(youdaoApiResponse));
-        viewItems.add(createYoudaoDictExplain(youdaoApiResponse));
+        viewItems.addAll(createBasicExplains(youdaoApiResponse));
         viewItems.add(createYoudaoTranslation(youdaoApiResponse));
         viewItems.addAll(createWebTranslations(youdaoApiResponse));
 
@@ -40,12 +40,19 @@ public class YoudaoTranslationParser implements AlfredViewResolver.Parser<Youdao
                 .collect(Collectors.toList());
     }
 
+    private Collection<AlfredViewModel.Item> createBasicExplains(YoudaoApiResponse youdaoApiResponse) {
+        String[] basicExplains = youdaoApiResponse.getBasicExplains();
+        return Arrays.stream(basicExplains)
+                .map(this::createBasicExplain)
+                .collect(Collectors.toList());
+    }
+
     private AlfredViewModel.Item createWebItem(String webTranslation) {
         return AlfredViewModel.ItemBuilder.create().setTitle(webTranslation).setSubtitle("Web Translation").build();
     }
 
-    private AlfredViewModel.Item createYoudaoDictExplain(YoudaoApiResponse youdaoApiResponse) {
-        return AlfredViewModel.ItemBuilder.create().setTitle(youdaoApiResponse.formatBasicExplains()).setSubtitle("Youdao Dict").build();
+    private AlfredViewModel.Item createBasicExplain(String basicExplain) {
+        return AlfredViewModel.ItemBuilder.create().setTitle(basicExplain).setSubtitle("Youdao Dict Basic Explain").build();
     }
 
     private AlfredViewModel.Item createPhonetic(YoudaoApiResponse youdaoApiResponse) {

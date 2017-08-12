@@ -46,15 +46,12 @@ public class YoudaoApiResponse {
                 .add("web", web).toString();
     }
 
-    public String formatBasicExplains() {
+    public String[] getBasicExplains() {
         Basic basic;
-        String[] explains;
-
-        if ((basic = getBasic()) == null
-                || (explains = basic.getExplains()) == null) {
-            return "null";
+        if ((basic = getBasic()) == null || basic.getExplains() == null) {
+            return new String[] {"null"};
         }
-        return basic.formatExplains();
+        return basic.getExplains();
     }
 
     public Pair[] getWeb() {
