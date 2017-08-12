@@ -32,6 +32,8 @@ public class YoudaoTranslator implements Handler {
         try {
             YoudaoApiResponse apiResponse = callApi(query);
             request.getContext().setAttribute("youdaoApiResponse", apiResponse);
+            LOGGER.info("youdao api cost: {}, content = {}",
+                    System.currentTimeMillis() - s, apiResponse);
         } catch (UnirestException e) {
             LOGGER.error("youdao translator call api error, query = {}", query,
                     e);
@@ -39,7 +41,6 @@ public class YoudaoTranslator implements Handler {
             response.setResult(StringUtils.EMPTY);
         }
 
-        LOGGER.info("youdao api cost: {}", System.currentTimeMillis() - s);
     }
 
     YoudaoApiResponse callApi(String query) throws UnirestException {

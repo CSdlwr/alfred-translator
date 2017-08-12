@@ -33,6 +33,8 @@ public class Server {
 
         long start = System.currentTimeMillis();
 
+        LOGGER.info("server entry time: {}", start);
+
         if (ArrayUtils.isEmpty(args)) {
             return;
         }
