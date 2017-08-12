@@ -21,9 +21,15 @@ public class YoudaoTranslationParser implements AlfredViewResolver.Parser<Youdao
         List<AlfredViewModel.Item> viewItems = Lists.newArrayList();
         viewItems.add(createPhonetic(youdaoApiResponse));
         viewItems.add(createYoudaoDictExplain(youdaoApiResponse));
+        viewItems.add(createYoudaoTranslation(youdaoApiResponse));
         viewItems.addAll(createWebTranslations(youdaoApiResponse));
 
         return new AlfredViewModel(viewItems);
+    }
+
+    private AlfredViewModel.Item createYoudaoTranslation(
+            YoudaoApiResponse youdaoApiResponse) {
+        return AlfredViewModel.ItemBuilder.create().setTitle(youdaoApiResponse.formatTranslation()).setSubtitle("Youdao Translation").build();
     }
 
     private Collection<AlfredViewModel.Item> createWebTranslations(YoudaoApiResponse youdaoApiResponse) {
