@@ -3,6 +3,7 @@ package lvluming.processor;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.request.HttpRequest;
 import lvluming.common.Handler;
 import lvluming.common.Request;
 import lvluming.common.Response;
@@ -24,6 +25,9 @@ public class YoudaoTranslator implements Handler {
 
     @Override
     public void handle(Request request, Response response) {
+
+        long s = System.currentTimeMillis();
+
         String query = request.getQuery();
         try {
             YoudaoApiResponse apiResponse = callApi(query);
@@ -34,6 +38,8 @@ public class YoudaoTranslator implements Handler {
             request.getContext().confirmAbort();
             response.setResult(StringUtils.EMPTY);
         }
+
+        LOGGER.info("youdao api cost: {}", System.currentTimeMillis() - s);
     }
 
     YoudaoApiResponse callApi(String query) throws UnirestException {
@@ -52,9 +58,10 @@ public class YoudaoTranslator implements Handler {
             }
         });
 
-        return Unirest.get(API_URL)
-                .queryString("q", query)
-                .asObject(YoudaoApiResponse.class)
-                .getBody();
+        HttpRequest getRequest = Unirest.get(API_URL).queryString("q", query);
+        String url = getRequest.getUrl();
+
+        LOGGER.info("api url = [{}]", url);
+        return getRequest.asObject(YoudaoApiResponse.class).getBody();
     }
 }

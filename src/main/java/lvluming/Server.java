@@ -25,9 +25,13 @@ import java.util.Map;
  */
 public class Server {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
+
     private static final Joiner PARAMETER_JOINER = Joiner.on(StringUtils.SPACE).skipNulls();
 
     public static void main(String[] args) {
+
+        long start = System.currentTimeMillis();
 
         if (ArrayUtils.isEmpty(args)) {
             return;
@@ -46,6 +50,8 @@ public class Server {
 
         handlers.forEach(h -> h.handle(request, response));
         System.out.println(response.getResult());
+
+        LOGGER.info("translate [{}] total cost: {}ms", query, System.currentTimeMillis() - start);
     }
 
     private static Response buildResponse() {
