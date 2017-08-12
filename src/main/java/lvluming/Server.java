@@ -15,7 +15,10 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import java.util.List;
 import java.util.Map;
@@ -34,8 +37,8 @@ public class Server {
 
         long start = System.currentTimeMillis();
 
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        System.out.println(context);
+        BeanFactory xmlBeanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        System.out.println(xmlBeanFactory);
 
         LOGGER.info("server entry time: {}", start);
 
