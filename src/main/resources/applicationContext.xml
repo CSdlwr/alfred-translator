@@ -5,4 +5,14 @@
 
     <bean id="beanFactoryHolder" class="lvluming.util.BeanFactoryHolder"/>
 
+    <bean id="translator" class="lvluming.processor.YoudaoTranslator"/>
+
+    <bean id="parser" class="lvluming.processor.YoudaoTranslationParser"/>
+    <bean id="viewer" class="lvluming.processor.SimpleXmlViewer"/>
+
+    <bean id="viewResolver" class="lvluming.processor.AlfredViewResolver">
+        <constructor-arg index="0" ref="parser"/>
+        <constructor-arg index="1" ref="viewer"/>
+    </bean>
+
 </beans>

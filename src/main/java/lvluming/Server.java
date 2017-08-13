@@ -1,6 +1,7 @@
 package lvluming;
 
 import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lvluming.common.Context;
@@ -11,6 +12,7 @@ import lvluming.processor.AlfredViewResolver;
 import lvluming.processor.SimpleXmlViewer;
 import lvluming.processor.YoudaoTranslationParser;
 import lvluming.processor.YoudaoTranslator;
+import lvluming.util.BeanFactoryHolder;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -52,9 +54,9 @@ public class Server {
         Request request = buildRequest(query, ctx);
         Response response = buildResponse();
 
-        List<Handler> handlers = Lists.newArrayList(
-                new YoudaoTranslator(),
-                new AlfredViewResolver(new YoudaoTranslationParser(), new SimpleXmlViewer())
+        List<Handler> handlers = ImmutableList.of(
+                BeanFactoryHolder.getBean("translator"),
+                BeanFactoryHolder.getBean("viewResolver")
         );
 
         handlers.forEach(h -> h.handle(request, response));

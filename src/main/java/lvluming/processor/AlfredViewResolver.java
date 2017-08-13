@@ -48,4 +48,11 @@ public class AlfredViewResolver implements Handler {
         String view(AlfredViewModel viewModel);
     }
 
+    public void setParser(Parser parser) {
+        this.parser = parser;
+    }
+
+    public void setViewer(Viewer viewer) {
+        this.viewer = viewer;
+    }
 }
