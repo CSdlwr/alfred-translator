@@ -8,9 +8,9 @@
 
     <bean id="beanFactoryHolder" class="lvluming.util.BeanFactoryHolder"/>
 
-    <bean id="translator" class="lvluming.processor.YoudaoTranslator"/>
+    <bean id="translator" class="lvluming.processor.youdao.YoudaoTranslator"/>
 
-    <bean id="parser" class="lvluming.processor.YoudaoTranslationParser"/>
+    <bean id="parser" class="lvluming.processor.youdao.YoudaoTranslationParser"/>
     <bean id="viewer" class="lvluming.processor.SimpleXmlViewer"/>
 
     <bean id="viewResolver" class="lvluming.processor.AlfredViewResolver">

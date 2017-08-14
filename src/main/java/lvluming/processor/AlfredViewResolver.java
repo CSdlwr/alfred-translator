@@ -38,12 +38,12 @@ public class AlfredViewResolver implements Handler {
         LOGGER.info("viewResolver cost: {}", System.currentTimeMillis() - s);
     }
 
-    interface Parser<T> {
+    public interface Parser<T> {
 
         AlfredViewModel parse(T t);
     }
 
-    interface Viewer {
+    public interface Viewer {
 
         String view(AlfredViewModel viewModel);
     }

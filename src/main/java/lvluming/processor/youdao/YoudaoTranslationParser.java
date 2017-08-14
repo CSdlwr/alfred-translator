@@ -1,8 +1,9 @@
-package lvluming.processor;
+package lvluming.processor.youdao;
 
 import com.google.common.collect.Lists;
 import lvluming.model.AlfredViewModel;
 import lvluming.model.YoudaoApiResponse;
+import lvluming.processor.AlfredViewResolver;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,7 +14,8 @@ import java.util.stream.Collectors;
  * @author lvluming
  * @date 2017/8/11 21:05
  */
-public class YoudaoTranslationParser implements AlfredViewResolver.Parser<YoudaoApiResponse> {
+public class YoudaoTranslationParser implements
+        AlfredViewResolver.Parser<YoudaoApiResponse> {
 
     @Override
     public AlfredViewModel parse(YoudaoApiResponse youdaoApiResponse) {

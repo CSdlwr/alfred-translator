@@ -1,4 +1,4 @@
-package lvluming.processor;
+package lvluming.processor.youdao;
 
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
@@ -45,7 +45,7 @@ public class YoudaoTranslator implements Handler {
 
     }
 
-    YoudaoApiResponse callApi(String query) throws UnirestException {
+    public YoudaoApiResponse callApi(String query) throws UnirestException {
 
         Unirest.setObjectMapper(new ObjectMapper() {
             @Override

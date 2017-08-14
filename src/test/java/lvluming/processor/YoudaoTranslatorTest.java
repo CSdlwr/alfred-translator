@@ -1,6 +1,7 @@
 package lvluming.processor;
 
 import lvluming.model.YoudaoApiResponse;
+import lvluming.processor.youdao.YoudaoTranslator;
 import lvluming.util.JsonUtil;
 import org.junit.Test;
 
