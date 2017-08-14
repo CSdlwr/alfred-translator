@@ -2,25 +2,18 @@ package lvluming;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lvluming.common.Context;
 import lvluming.common.Handler;
 import lvluming.common.Request;
 import lvluming.common.Response;
-import lvluming.processor.AlfredViewResolver;
-import lvluming.processor.SimpleXmlViewer;
-import lvluming.processor.YoudaoTranslationParser;
-import lvluming.processor.YoudaoTranslator;
 import lvluming.util.BeanFactoryHolder;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
 import java.util.List;
 import java.util.Map;
