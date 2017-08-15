@@ -7,7 +7,7 @@ import lvluming.common.Context;
 import lvluming.common.Handler;
 import lvluming.common.Request;
 import lvluming.common.Response;
-import lvluming.util.BeanFactoryHolder;
+import lvluming.util.SpringContextHolder;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -48,8 +48,8 @@ public class Server {
         Response response = buildResponse();
 
         List<Handler> handlers = ImmutableList.of(
-                BeanFactoryHolder.getBean("translator"),
-                BeanFactoryHolder.getBean("viewResolver")
+                SpringContextHolder.getBean("translator"),
+                SpringContextHolder.getBean("viewResolver")
         );
 
         handlers.forEach(h -> h.handle(request, response));

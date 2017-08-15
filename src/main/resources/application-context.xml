@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="beanFactoryHolder" class="lvluming.util.BeanFactoryHolder"/>
+    <bean id="springContextHolder" class="lvluming.util.SpringContextHolder"/>
 
     <bean id="translator" class="lvluming.processor.youdao.YoudaoTranslator"/>
 
