@@ -32,7 +32,7 @@ public class Server {
 
         long start = System.currentTimeMillis();
 
-        BeanFactory xmlBeanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        BeanFactory xmlBeanFactory = new ClassPathXmlApplicationContext("application-context.xml");
         System.out.println(xmlBeanFactory);
 
         LOGGER.info("server entry time: {}", start);
