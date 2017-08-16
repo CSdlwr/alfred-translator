@@ -1,5 +1,6 @@
 package lvluming.transport.socket;
 
+import lvluming.biz.Biz;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,8 @@ public class SocketTransportor {
             try {
                 socket = serverSocket.accept();
                 long s = System.currentTimeMillis();
-                String query = IOUtils.toString(socket.getInputStream());
+                String query = IOUtils.toString(socket.getInputStream()).trim();
+                Biz.getBiz(query).process();
                 LOGGER.info("server socket accept request [{}] cost {} ms", query, System.currentTimeMillis() - s);
             } catch (IOException e) {
                 LOGGER.error("Socket transportor init error.", e);

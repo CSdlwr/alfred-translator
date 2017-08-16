@@ -6,7 +6,7 @@ package lvluming.common;
  */
 public interface Response {
 
-    String getResult();
+    Object getResult();
 
-    void setResult(String result);
+    void setResult(Object result);
 }
