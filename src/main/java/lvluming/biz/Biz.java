@@ -39,7 +39,7 @@ public class Biz {
         this.query = query;
     }
 
-    public void process() {
+    public String process() {
 
         long start = System.currentTimeMillis();
 
@@ -53,7 +53,7 @@ public class Biz {
         );
 
         handlers.forEach(h -> h.handle(request, response));
-        System.out.println(response.getResult());
         LOGGER.info("translate [{}] total cost: {} ms", query, System.currentTimeMillis() - start);
+        return response.getResult().toString();
     }
 }

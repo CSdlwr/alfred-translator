@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -24,17 +26,28 @@ public class SocketTransportor {
         LOGGER.info("Socket transportor init, accepting request");
         while (true) {
             Socket socket = null;
+            InputStream inputStream = null;
+            OutputStream outputStream = null;
             try {
                 socket = serverSocket.accept();
                 long s = System.currentTimeMillis();
-                String query = IOUtils.toString(socket.getInputStream()).trim();
-                Biz.getBiz(query).process();
+                inputStream = socket.getInputStream();
+                String query = IOUtils.toString(inputStream).trim().replaceAll("\\\\", "");
+                String response = Biz.getBiz(query).process();
+                outputStream = socket.getOutputStream();
+                outputStream.write(response.getBytes());
                 LOGGER.info("server socket accept request [{}] cost {} ms", query, System.currentTimeMillis() - s);
             } catch (IOException e) {
                 LOGGER.error("Socket transportor init error.", e);
             } finally {
                 if (socket != null) {
                     socket.close();
+                }
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+                if (outputStream != null) {
+                    outputStream.close();
                 }
             }
         }
