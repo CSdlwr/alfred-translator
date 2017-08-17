@@ -6,6 +6,7 @@ import lvluming.common.Handler;
 import lvluming.common.Request;
 import lvluming.common.Response;
 import lvluming.util.SpringContextHolder;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -41,19 +42,24 @@ public class Biz {
 
     public String process() {
 
-        long start = System.currentTimeMillis();
+        try {
+            long start = System.currentTimeMillis();
 
-        context = new BizContext();
-        request = new BizRequest(query, context);
-        response = new BizResponse();
+            context = new BizContext();
+            request = new BizRequest(query, context);
+            response = new BizResponse();
 
-        List<Handler> handlers = ImmutableList.of(
-                SpringContextHolder.getBean("translator"),
-                SpringContextHolder.getBean("viewResolver")
-        );
+            List<Handler> handlers = ImmutableList.of(
+                    SpringContextHolder.getBean("translator"),
+                    SpringContextHolder.getBean("viewResolver")
+            );
 
-        handlers.forEach(h -> h.handle(request, response));
-        LOGGER.info("translate [{}] total cost: {} ms", query, System.currentTimeMillis() - start);
-        return response.getResult().toString();
+            handlers.forEach(h -> h.handle(request, response));
+            LOGGER.info("translate [{}] total cost: {} ms", query, System.currentTimeMillis() - start);
+            return response.getResult().toString();
+        } catch (Exception e) {
+            LOGGER.error("biz process error.", e);
+            return StringUtils.EMPTY;
+        }
     }
 }
