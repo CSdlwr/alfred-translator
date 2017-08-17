@@ -2,7 +2,7 @@ package lvluming;
 
 import com.google.common.base.Joiner;
 import lvluming.biz.Biz;
-import lvluming.transport.socket.SocketTransportor;
+import lvluming.transport.io.SocketTransportor;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

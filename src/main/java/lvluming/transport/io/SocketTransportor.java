@@ -1,4 +1,4 @@
-package lvluming.transport.socket;
+package lvluming.transport.io;
 
 import lvluming.biz.Biz;
 import org.apache.commons.io.IOUtils;
