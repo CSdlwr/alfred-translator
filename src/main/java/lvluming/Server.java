@@ -2,7 +2,7 @@ package lvluming;
 
 import com.google.common.base.Joiner;
 import lvluming.biz.Biz;
-import lvluming.transport.io.SocketTransportor;
+import lvluming.transport.io.SimpleSocketTransportor;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         Biz.initEnv();
-        SocketTransportor.init();
+        SimpleSocketTransportor.init();
 
     }
 }

@@ -12,12 +12,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
+ * 单线程版本的oio socket
+ *
  * @author lvluming
  * @date 2017/8/15 23:00
  */
-public class SocketTransportor {
+public class SimpleSocketTransportor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SocketTransportor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SimpleSocketTransportor.class);
     private static final int PORT = 12345;
 
     public static void init() throws IOException {
