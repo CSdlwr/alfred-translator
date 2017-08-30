@@ -22,6 +22,22 @@ public class YoudaoTranslator implements Handler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(YoudaoTranslator.class);
 
+    static {
+        Unirest.setObjectMapper(new ObjectMapper() {
+            @Override
+            public <T> T readValue(String value, Class<T> valueType) {
+                //                    return JsonUtil.getDefaultObjectMapper().readValue(value, valueType);
+                return JsonUtil.fromJson(value, valueType);
+            }
+
+            @Override
+            public String writeValue(Object value) {
+                return JsonUtil.toJson(value);
+                //                    return JsonUtil.getDefaultObjectMapper().writeValueAsString(value);
+            }
+        });
+    }
+
     @Value("${youdao.api.url}")
     private String apiUrl;
 
@@ -47,19 +63,6 @@ public class YoudaoTranslator implements Handler {
 
     public YoudaoApiResponse callApi(String query) throws UnirestException {
 
-        Unirest.setObjectMapper(new ObjectMapper() {
-            @Override
-            public <T> T readValue(String value, Class<T> valueType) {
-                //                    return JsonUtil.getDefaultObjectMapper().readValue(value, valueType);
-                return JsonUtil.fromJson(value, valueType);
-            }
-
-            @Override
-            public String writeValue(Object value) {
-                return JsonUtil.toJson(value);
-                //                    return JsonUtil.getDefaultObjectMapper().writeValueAsString(value);
-            }
-        });
 
         HttpRequest getRequest = Unirest.get(apiUrl).queryString("q", query);
         String url = getRequest.getUrl();
