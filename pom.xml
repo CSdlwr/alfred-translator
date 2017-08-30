@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <powermock.version>1.6.5</powermock.version>
         <spring.framework.version>4.3.5.RELEASE</spring.framework.version>
-        <artifect.output.dir>/Users/lvluming/Desktop</artifect.output.dir>
+        <artifect.output.dir>/Users/lvluming/Library/Application Support/Alfred 3/Alfred.alfredpreferences/workflows/user.workflow.06C737D2-6DF5-45A6-9EE2-B862A44C8D79</artifect.output.dir>
     </properties>
 
     <dependencyManagement>
@@ -258,6 +258,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <outputDirectory>${artifect.output.dir}</outputDirectory>
+                </configuration>
             </plugin>
 
             <plugin>
